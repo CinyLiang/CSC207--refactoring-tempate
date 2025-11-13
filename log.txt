@@ -1,3 +1,4 @@
-5c983c1 (HEAD -> main, origin/main, origin/HEAD) Task 1.1
+3d627e9 (HEAD -> main, origin/main, origin/HEAD) up to task 2.1.4
+21dcd6d Task 1.2
+5c983c1 Task 1.1
 979366e Initial commit
-(base) a18501@MacBook-Pro-355 CSC207--refactoring-tempate %
