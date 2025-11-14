@@ -46,14 +46,18 @@ public class StatementPrinter {
             // print line for this order
             result.append(String.format("  %s: %s (%s seats)%n",
                     getPlay(p).getName(),
-                    frmt.format(getAmount(p) / Constants.PERCENT_FACTOR),
+                    usd(frmt, getAmount(p)),
                     p.getAudience()));
             totalAmount += getAmount(p);
         }
-        result.append(String.format("Amount owed is %s%n", frmt.format(
-                totalAmount / Constants.PERCENT_FACTOR)));
+        result.append(String.format("Amount owed is %s%n", usd(frmt, totalAmount)));
         result.append(String.format("You earned %s credits%n", volumeCredits));
         return result.toString();
+    }
+
+    private static String usd(NumberFormat frmt, int totalAmount) {
+        return frmt.format(
+                totalAmount / Constants.PERCENT_FACTOR);
     }
 
     private int getVolumeCredits(Performance performance) {
