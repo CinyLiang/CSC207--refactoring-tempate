@@ -32,7 +32,6 @@ public class StatementPrinter {
      */
 
     public String statement() {
-        final NumberFormat frmt = NumberFormat.getCurrencyInstance(Locale.US);
 
         final StringBuilder result;
         result = new StringBuilder("Statement for " + invoice.getCustomer() + System.lineSeparator());
@@ -40,11 +39,11 @@ public class StatementPrinter {
             // print line for this order
             result.append(String.format("  %s: %s (%s seats)%n",
                     getPlay(p).getName(),
-                    usd(frmt, getAmount(p)),
+                    usd(getAmount(p)),
                     p.getAudience()));
         }
 
-        result.append(String.format("Amount owed is %s%n", usd(frmt, getTotalAmount())));
+        result.append(String.format("Amount owed is %s%n", usd(getTotalAmount())));
         result.append(String.format("You earned %s credits%n", getTotalVolumeCredits()));
         return result.toString();
     }
@@ -66,7 +65,8 @@ public class StatementPrinter {
         return result;
     }
 
-    private static String usd(NumberFormat frmt, int totalAmount) {
+    private static String usd(int totalAmount) {
+        final NumberFormat frmt = NumberFormat.getCurrencyInstance(Locale.US);
         return frmt.format(
                 totalAmount / Constants.PERCENT_FACTOR);
     }
